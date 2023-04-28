@@ -21,6 +21,15 @@ GLfloat cloud2Speed = 0.07f;
 float cloud3Position = 0.0f;
 GLfloat cloud3Speed = 0.03f;
 
+float rightWavePosition1 = 0.0f;
+GLfloat rightWaveSpeed1 = 0.072f;
+
+float rightWavePosition2 = 0.0f;
+GLfloat rightWaveSpeed2 = 0.062f;
+
+float boatPosition = 0.0f;
+GLfloat boatSpeed = 0.02f;
+
 /*
 void handleMouse(int button, int state, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON)
@@ -49,7 +58,6 @@ case 'w':
 
 glutPostRedisplay();
 
-
 	}
 }*/
 
@@ -73,12 +81,8 @@ void DrawCircle(float cx, float cy, float r, int num_segments){
 }
 
 
-void cloud1Update(int value) { // timer .. er kaj timer ba thread
-    // ekta particular time por por function call hobe .. update nam er function call hobe ..
-
-    // timer use kore move korte parbo .. jekono object .. ba translation korte parbo ..
-
-    if(cloud1Position > 1.8f)//
+void cloud1Update(int value) {
+    if(cloud1Position > 1.8f)
         cloud1Position = -0.5f;
 
     cloud1Position += cloud1Speed;
@@ -88,12 +92,8 @@ void cloud1Update(int value) { // timer .. er kaj timer ba thread
 	glutTimerFunc(100, cloud1Update, 0);
 }
 
-void cloud2Update(int value) { // timer .. er kaj timer ba thread
-    // ekta particular time por por function call hobe .. update nam er function call hobe ..
-
-    // timer use kore move korte parbo .. jekono object .. ba translation korte parbo ..
-
-    if(cloud2Position < -1.8)//
+void cloud2Update(int value) {
+    if(cloud2Position < -1.8)
         cloud2Position = +0.5f;
 
     cloud2Position -= cloud2Speed;
@@ -103,11 +103,7 @@ void cloud2Update(int value) { // timer .. er kaj timer ba thread
 	glutTimerFunc(100, cloud2Update, 0);
 }
 
-void cloud3Update(int value) { // timer .. er kaj timer ba thread
-    // ekta particular time por por function call hobe .. update nam er function call hobe ..
-
-    // timer use kore move korte parbo .. jekono object .. ba translation korte parbo ..
-
+void cloud3Update(int value) {
     if(cloud3Position < -0.4)//
         cloud3Position = +1.9f;
 
@@ -116,6 +112,39 @@ void cloud3Update(int value) { // timer .. er kaj timer ba thread
 	glutPostRedisplay();
 
 	glutTimerFunc(100, cloud3Update, 0);
+}
+
+void rightWaveUpdate1(int value) {
+    if(rightWavePosition1 > 1.0)//1.7
+        rightWavePosition1 = -1.0f; // -1.6
+
+    rightWavePosition1 += rightWaveSpeed1;
+
+	glutPostRedisplay();
+
+	glutTimerFunc(100, rightWaveUpdate1, 0);
+}
+
+void rightWaveUpdate2(int value) {
+    if(rightWavePosition2 > 1.0)
+        rightWavePosition2 = -1.0f;
+
+    rightWavePosition2 += rightWaveSpeed2;
+
+	glutPostRedisplay();
+
+	glutTimerFunc(100, rightWaveUpdate2, 0);
+}
+
+void boatUpdate(int value) {
+    if(boatPosition > 0.7)
+        boatPosition = -1.8f;
+
+    boatPosition += boatSpeed;
+
+	glutPostRedisplay();
+
+	glutTimerFunc(100, boatUpdate, 0);
 }
 
 void summerSeason() {
@@ -275,6 +304,7 @@ void summerSeason() {
     // Mountain 4 - pt 1 code ends here
 
     // Mountain 4 - pt 2 code starts from here
+
     glBegin(GL_POLYGON);
     glColor3ub(114, 114, 114);
     glVertex2f(0.4960794220775, -0.1533053243555); //O
@@ -293,14 +323,299 @@ void summerSeason() {
 
     // River code starts from here
 
-    // River water code
+    // River water code starts here
+
+    glBegin(GL_POLYGON);
+    glColor3ub(110, 164, 221);
+    glVertex2f(-1.0, -0.1533053243555); // Base -x up
+    glVertex2f(1.0, -0.1533053243555); // Base +x up
+    glVertex2f(1.0, -0.5756367057105); // Base +x down
+    glVertex2f(-1.0, -0.5756367057105); // Base -x down
+    glVertex2f(-1.0, -0.1533053243555); // ending at beginning
+    glEnd();
+
+    // River water code ends here
+
+    // Wave set code starts here
 
 
+    glPushMatrix();
+    glTranslatef(rightWavePosition1,0.0f, 0.0f);
 
-glPushMatrix();
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(-0.6, -0.3);
+    glVertex2f(-0.4, -0.3);
+    glVertex2f(-0.5, -0.275);
+    glEnd();
 
-glPopMatrix();
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(0.6, -0.3);
+    glVertex2f(0.8, -0.3);
+    glVertex2f(0.7, -0.275);
+    glEnd();
 
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(-0.9, -0.4);
+    glVertex2f(-0.7, -0.4);
+    glVertex2f(-0.8, -0.375);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(0.3, -0.4);
+    glVertex2f(0.5, -0.4);
+    glVertex2f(0.4, -0.375);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(-0.5, -0.5);
+    glVertex2f(-0.3, -0.5);
+    glVertex2f(-0.4, -0.475);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(0.7, -0.5);
+    glVertex2f(0.9, -0.5);
+    glVertex2f(0.8, -0.475);
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(rightWavePosition2,0.0f, 0.0f);
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(0.0, -0.3);
+    glVertex2f(0.2, -0.3);
+    glVertex2f(0.1, -0.275);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(-0.3, -0.4);
+    glVertex2f(-0.1, -0.4);
+    glVertex2f(-0.2, -0.375);
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor3ub(190, 220, 220);
+    glVertex2f(0.1, -0.5);
+    glVertex2f(0.3, -0.5);
+    glVertex2f(0.2, -0.475);
+    glEnd();
+
+    glPopMatrix();
+
+    // Wave set code ENDS here
+
+    // River code ends here
+
+    // ===============================================
+
+    // Boar code starts from here
+
+    glPushMatrix();
+    glTranslatef(boatPosition,0.0f, 0.0f);
+
+    // Bottom haul of the boat //501
+    glBegin(GL_QUADS);
+    glColor3ub(78, 75, 75);
+    glVertex2f(0.36f, -0.37f);
+    glVertex2f(0.77f, -0.37f);
+    glVertex2f(0.77f, -0.35f);
+    glVertex2f(0.36f, -0.35f);
+    glEnd();
+
+    // Middle haul of the boat
+   glBegin(GL_QUADS);
+   glColor3ub(138, 3, 42);
+   glVertex2f(0.36f, -0.35f);
+   glVertex2f(0.77f, -0.35f);
+   glVertex2f(0.77f, -0.33f);
+   glVertex2f(0.36f, -0.33f);
+   glEnd();
+
+    // 1st flr of boat
+   glBegin(GL_QUADS);
+   glColor3ub(250, 250, 150);
+   glVertex2f(0.45f, -0.33f);
+   glVertex2f(0.72f, -0.33f);
+   glVertex2f(0.72f, -0.25f);
+   glVertex2f(0.45f, -0.25f);
+   glEnd();
+
+   // body design stripe on 1st flr of boat
+   glBegin(GL_QUADS);
+   glColor3ub(200, 40, 90);
+   glVertex2f(0.45f, -0.3f);
+   glVertex2f(0.72f, -0.3f);
+   glVertex2f(0.72f, -0.29f);
+   glVertex2f(0.45f, -0.29f);
+   glEnd();
+
+   // 1st flr door
+   glBegin(GL_QUADS);
+   glColor3ub(60, 70, 180);
+   glVertex2f(0.51f, -0.33f);
+   glVertex2f(0.54f, -0.33f);
+   glVertex2f(0.54f, -0.27f);
+   glVertex2f(0.51f, -0.27f);
+   glEnd();
+
+   // front haul of boat
+   glBegin(GL_QUADS);
+   glColor3ub(138, 3, 42);
+   glVertex2f(0.58f, -0.33f);
+   glVertex2f(0.77f, -0.33f);
+   glVertex2f(0.82f, -0.29f);
+   glVertex2f(0.63f, -0.29f);
+   glEnd();
+
+   // Roof of first flr
+   glBegin(GL_QUADS);
+   glColor3ub(181, 57, 57);
+   glVertex2f(0.43f, -0.25f);
+   glVertex2f(0.74f, -0.25f);
+   glVertex2f(0.74f, -0.23f);
+   glVertex2f(0.43f, -0.23f);
+   glEnd();
+
+   // 2nd flr left small block
+   glBegin(GL_QUADS);
+   glColor3ub(250, 250, 150);
+   glVertex2f(0.52f, -0.23f);
+   glVertex2f(0.56f, -0.23f);
+   glVertex2f(0.56f, -0.18f);
+   glVertex2f(0.52f, -0.18f);
+   glEnd();
+
+   //2nd flr right big block
+   glBegin(GL_QUADS);
+   glColor3ub(250, 250, 150);
+   glVertex2f(0.56f, -0.23f);
+   glVertex2f(0.71f, -0.23f);
+   glVertex2f(0.71f, -0.16f);
+   glVertex2f(0.56f, -0.16f);
+   glEnd();
+
+   // 2nd flr door
+   glBegin(GL_QUADS);
+   glColor3ub(60, 70, 180);
+   glVertex2f(0.64f, -0.23f);
+   glVertex2f(0.67f, -0.23f);
+   glVertex2f(0.67f, -0.17f);
+   glVertex2f(0.64f, -0.17f);
+   glEnd();
+
+   // 2nd flr door window
+   glBegin(GL_QUADS);
+   glColor3ub(200, 40, 90);
+   glVertex2f(0.65f, -0.20f);
+   glVertex2f(0.662f, -0.20f);
+   glVertex2f(0.662f, -0.18f);
+   glVertex2f(0.65f, -0.18f);
+   glEnd();
+
+   // 2nd flr big window
+   glBegin(GL_QUADS);
+   glColor3ub(200, 40, 90);
+   glVertex2f(0.59f, -0.20f);
+   glVertex2f(0.63f, -0.20f);
+   glVertex2f(0.63f, -0.17f);
+   glVertex2f(0.59f, -0.17f);
+   glEnd();
+
+   // 2nd flr small window
+   glBegin(GL_QUADS);
+   glColor3ub(200, 40, 90);
+   glVertex2f(0.68f, -0.20f);
+   glVertex2f(0.70f, -0.20f);
+   glVertex2f(0.70f, -0.17f);
+   glVertex2f(0.68f, -0.17f);
+   glEnd();
+
+   //2nd flr big block roof
+   glBegin(GL_QUADS);
+   glColor3ub(181, 57, 57);
+   glVertex2f(0.55f, -0.16f);
+   glVertex2f(0.72f, -0.16f);
+   glVertex2f(0.72f, -0.15f);
+   glVertex2f(0.55f, -0.15f);
+   glEnd();
+
+   //Top roof above 2nd flr big block roof
+   glBegin(GL_QUADS);
+   glColor3ub(138, 3, 42);
+   glVertex2f(0.55f, -0.15f);
+   glVertex2f(0.73f, -0.15f);
+   glVertex2f(0.74f, -0.14f);
+   glVertex2f(0.55f, -0.14f);
+   glEnd();
+
+   //2nd flr small block roof
+   glBegin(GL_QUADS);
+   glColor3ub(181, 57, 57);
+   glVertex2f(0.50f, -0.18f);
+   glVertex2f(0.58f, -0.18f);
+   glVertex2f(0.58f, -0.17f);
+   glVertex2f(0.50f, -0.17f);
+   glEnd();
+
+   // Back fence code section starts here
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.38f, -0.33f);
+   glVertex2f(0.41f, -0.33f);
+   glVertex2f(0.41f, -0.32f);
+   glVertex2f(0.38f, -0.32f);
+   glEnd();
+
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.41f, -0.33f);
+   glVertex2f(0.43f, -0.33f);
+   glVertex2f(0.43f, -0.32f);
+   glVertex2f(0.41f, -0.32f);
+   glEnd();
+
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.43f, -0.33f);
+   glVertex2f(0.45f, -0.33f);
+   glVertex2f(0.45f, -0.32f);
+   glVertex2f(0.43f, -0.32f);
+   glEnd();
+
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.38f, -0.32f);
+   glVertex2f(0.41f, -0.32f);
+   glVertex2f(0.41f, -0.31f);
+   glVertex2f(0.38f, -0.31f);
+   glEnd();
+
+
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.43f, -0.32f);
+   glVertex2f(0.45f, -0.32f);
+   glVertex2f(0.45f, -0.31f);
+   glVertex2f(0.43f, -0.31f);
+   glEnd();
+
+   glPopMatrix();
+
+   // back fence code block ends here
+
+   // Boat code ends here
+
+   // ===========================================================
 
    glFlush();
 }
@@ -311,15 +626,17 @@ int main(int argc, char** argv) {
    glutInit(&argc, argv);
    glutInitWindowSize(980, 700);
    glutInitWindowPosition(50, 50);
-   glutCreateWindow("Basic Animation");
+   glutCreateWindow("Natural Scenario");
    glutDisplayFunc(summerSeason);
    init();
    //glutKeyboardFunc(handleKeypress);
    //glutMouseFunc(handleMouse);
-   //glutTimerFunc(1000, update, 0);
    glutTimerFunc(25, cloud1Update, 0);
    glutTimerFunc(25, cloud2Update, 0);
    glutTimerFunc(25, cloud3Update, 0);
+   glutTimerFunc(25, rightWaveUpdate1, 0);
+   glutTimerFunc(25, rightWaveUpdate2, 0);
+   glutTimerFunc(25, boatUpdate, 0);
    glutMainLoop();
    return 0;
 }
