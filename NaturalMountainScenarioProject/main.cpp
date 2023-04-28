@@ -30,6 +30,10 @@ GLfloat rightWaveSpeed2 = 0.062f;
 float boatPosition = 0.0f;
 GLfloat boatSpeed = 0.02f;
 
+float trainPosition = 0.0f;
+GLfloat trainSpeed = 0.02f;
+
+
 /*
 void handleMouse(int button, int state, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON)
@@ -69,7 +73,6 @@ void init() {
 
 
 void DrawCircle(float cx, float cy, float r, int num_segments){
-    num_segments = 200;
     glBegin(GL_TRIANGLE_FAN);
     for (int i = 0; i < num_segments; i++){
         float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);//get the current angle
@@ -80,6 +83,9 @@ void DrawCircle(float cx, float cy, float r, int num_segments){
     glEnd();
 }
 
+float randomFloat(float min, float max) {
+    return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+}
 
 void cloud1Update(int value) {
     if(cloud1Position > 1.8f)
@@ -145,6 +151,22 @@ void boatUpdate(int value) {
 	glutPostRedisplay();
 
 	glutTimerFunc(100, boatUpdate, 0);
+}
+
+void trainUpdate(int value) { // timer .. er kaj timer ba thread
+    // ekta particular time por por function call hobe .. update nam er function call hobe ..
+
+    // timer use kore move korte parbo .. jekono object .. ba translation korte parbo ..
+
+    if(trainPosition < -2.0)//
+        trainPosition = 0.6f;
+
+    trainPosition -= trainSpeed;
+
+	glutPostRedisplay();
+
+
+	glutTimerFunc(100, trainUpdate, 0);
 }
 
 void summerSeason() {
@@ -617,6 +639,172 @@ void summerSeason() {
 
    // ===========================================================
 
+   // Tree code starts here
+
+   // Back tree row common fill code starts here
+
+   glBegin(GL_QUADS);
+   glColor3ub(61, 124, 83);
+   glVertex2f(1.0, -0.5756367057105); // Base +x down
+   glVertex2f(-1.0, -0.5756367057105); // Base -x down
+   glVertex2f(-1.0, -0.6869004722551);
+   glVertex2f(1.0, -0.6869004722551);
+   glEnd();
+
+   // Back tree row common fill code ends here
+
+   // Ground grass color code starts here
+
+   glBegin(GL_QUADS);
+   glColor3ub(78, 133, 21);
+   glVertex2f(-1.0, -0.6869004722551);
+   glVertex2f(1.0, -0.6869004722551);
+   glVertex2f(1.0, -1);
+   glVertex2f(-1.0, -1);
+   glEnd();
+
+   // Ground grass color code ends here
+
+   // tree 1 code starts here
+
+   // 1st triangle
+   glBegin(GL_TRIANGLES);
+   glColor3ub(13, 91, 40);
+   glVertex2f(-0.2938571399917, -0.4423232979151);
+   glVertex2f(-0.2115496244678, -0.5423834148265);
+   glVertex2f(-0.3793924012224, -0.5415764783998);
+   glEnd();
+   // 2nd triangle
+   glBegin(GL_TRIANGLES);
+   glColor3ub(13, 91, 40);
+   glVertex2f(-0.2978918221252, -0.5084920849049);
+   glVertex2f(-0.1841137859599, -0.5811163633083);
+   glVertex2f(-0.3898825747696, -0.5762747447481);
+   glEnd();
+   //3rd triangle
+   glBegin(GL_TRIANGLES);
+   glColor3ub(13, 91, 40);
+   glVertex2f(-0.3, -0.55);
+   glVertex2f(-0.1792721673996, -0.6408296588845);
+   glVertex2f(-0.3955311297565, -0.6335672310441);
+   glEnd();
+   //4th triangle
+   glBegin(GL_TRIANGLES);
+   glColor3ub(13, 91, 40);
+   glVertex2f(-0.3, -0.6);
+   glVertex2f(-0.1740006707345, -0.6905816498292);
+   glVertex2f(-0.4187989794158, -0.6869004722551);
+   glEnd();
+   // Tree stand
+   glBegin(GL_QUADS);
+   glColor3ub(118, 92, 72);
+   glVertex2f(-0.3194071849136, -0.6973304753819);
+   glVertex2f(-0.2825954091721, -0.6961034161905);
+   glVertex2f(-0.2801412907893, -0.74886696142);
+   glVertex2f(-0.3187936553179, -0.7494804910157);
+   glEnd();
+   //5th triangle
+   glBegin(GL_TRIANGLES);
+   glColor3ub(13, 91, 40);
+   glVertex2f(-0.3, -0.65);
+   glVertex2f(-0.1574353716508, -0.7286204847622);
+   glVertex2f(-0.4286154529469, -0.7292340143579);
+   glEnd();
+
+   // Tree 1 code ends here
+
+   // Tree code ends here
+
+   // ================================================
+
+   // Close Train code starts here
+
+   // Train track code starts here
+
+   glBegin(GL_QUADS);
+   glColor3ub(78, 75, 75);
+   glVertex2f(-1.0, -0.9599998637683);
+   glVertex2f(-1.0, -0.9443483025884);
+   glVertex2f(1.0, -0.9443483025884);
+   glVertex2f(1.0, -0.9599998637683);
+   glEnd();
+
+   // Train track code ends here
+
+   // Train body code starts here
+   glPushMatrix();
+   glTranslatef(trainPosition,0.0f, 0.0f);
+
+   // Train wheel - from left
+   glColor3f(1.0, 1.0, 1.0);
+   DrawCircle(0.5998821731765, -0.9361512437916, 0.0238494583195, 8000);//1 - far left
+   DrawCircle(0.5998821731765+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//2
+   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//3
+   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//4
+   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//5
+
+   //Train Body
+   glBegin(GL_QUADS);
+   glColor3ub(60, 160, 160);
+   glVertex2f(0.541827936322, -0.9243514184048);
+   glVertex2f(0.5877156024394, -0.6793877707164);
+   glVertex2f(0.9772657599597, -0.6793877707164);
+   glVertex2f(0.9775893048246, -0.9284275411587);
+   glEnd();
+
+   //Train Front window
+   glBegin(GL_QUADS);
+   glColor3ub(0, 0, 0);
+   glVertex2f(0.6332556280382, -0.7189713862838);
+   glVertex2f(0.6328508059703, -0.8007454440108);
+   glVertex2f(0.6328508059703 - 0.0674149961409, -0.8007454440108);
+   glVertex2f(0.6332556280382 - 0.0527475137977, -0.7189713862838);
+   glEnd();
+
+   //Train Front door
+   glBegin(GL_QUADS);
+   glColor3ub(0, 0, 0);
+   glVertex2f(0.6477341622669, -0.7189713862838);
+   glVertex2f(0.7003276602857, -0.7189713862838);
+   glVertex2f(0.7003276602857, -0.7189713862838 - 0.2067068723295);
+   glVertex2f(0.6477341622669, -0.7189713862838 - 0.2067068723295);
+   glEnd();
+
+   // Train window 1
+   glBegin(GL_QUADS);
+   glColor3ub(0, 0, 0);
+   glVertex2f(0.7184890224957, -0.7189713862838);
+   glVertex2f(0.7829826061271, -0.7189713862838);
+   glVertex2f(0.7829826061271, -0.7889713862838);
+   glVertex2f(0.7184890224957, -0.7889713862838);
+   glEnd();
+
+   // Train window 2
+   glBegin(GL_QUADS);
+   glColor3ub(0, 0, 0);
+   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7189713862838);
+   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7189713862838);
+   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7889713862838);
+   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7889713862838);
+   glEnd();
+
+   // Train window 3
+   glBegin(GL_QUADS);
+   glColor3ub(0, 0, 0);
+   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
+   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
+   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
+   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
+   glEnd();
+
+   // Train body design will go here
+
+   // Code
+
+   glPopMatrix();
+
+   // Train body code ends here
+
    glFlush();
 }
 
@@ -637,6 +825,7 @@ int main(int argc, char** argv) {
    glutTimerFunc(25, rightWaveUpdate1, 0);
    glutTimerFunc(25, rightWaveUpdate2, 0);
    glutTimerFunc(25, boatUpdate, 0);
+   glutTimerFunc(25, trainUpdate, 0);
    glutMainLoop();
    return 0;
 }

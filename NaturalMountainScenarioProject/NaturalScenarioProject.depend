@@ -236,3 +236,12 @@
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
 
+1682683276 source:f:\university\7th semester\courses\computer graphics\project\naturalscenario\naturalscenarioproject\naturalmountainscenario\naturalmountainscenarioproject\main.cpp
+	<cstdio>
+	<GL/gl.h>
+	<GL/glut.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<math.h>
+
