@@ -88,8 +88,8 @@ float randomFloat(float min, float max) {
 }
 
 void cloud1Update(int value) {
-    if(cloud1Position > 1.8f)
-        cloud1Position = -0.5f;
+    if(cloud1Position > 1.6f)
+        cloud1Position = -0.8f;
 
     cloud1Position += cloud1Speed;
 
@@ -204,6 +204,15 @@ void summerSeason() {
 
     // ======================================================
 
+    // Sun drawing code starts here
+
+    glColor3ub(253, 218, 113);
+	DrawCircle(-0.7356168493546, 0.5864996734224, 0.1620605572764, 2000);
+
+    // Sun drawing code ends here
+
+    // =================================================
+
     // Drawing clouds start from here
 
     // Cloud 1 starts from here
@@ -243,6 +252,7 @@ void summerSeason() {
     // Cloud 3 ends here
 
     // Drawing clouds ends here
+
 
     // =================================================
 
@@ -398,7 +408,8 @@ void summerSeason() {
     glVertex2f(-0.3, -0.5);
     glVertex2f(-0.4, -0.475);
     glEnd();
-
+    glPushMatrix();
+    glTranslatef(rightWavePosition1,0.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     glColor3ub(190, 220, 220);
     glVertex2f(0.7, -0.5);
@@ -440,7 +451,7 @@ void summerSeason() {
 
     // ===============================================
 
-    // Boar code starts from here
+    // Boat code starts from here
 
     glPushMatrix();
     glTranslatef(boatPosition,0.0f, 0.0f);
