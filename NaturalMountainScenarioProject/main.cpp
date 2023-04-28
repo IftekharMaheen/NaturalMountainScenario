@@ -178,67 +178,6 @@ void birdUpdate(int value) {
 	glutTimerFunc(100, birdUpdate, 0);
 }
 
-// ============= Handle Mouse Press Functions ================
-
-void handleMouse(int button, int state, int x, int y) {
-	if (button == GLUT_LEFT_BUTTON)
-	{
-		if (state == GLUT_DOWN)
-		{
-			boatSpeed += 0.04f;
-			printf(">>> Notification: Boat speed increased (+0.04)!\n");
-		}
-	}
-    if (button == GLUT_RIGHT_BUTTON)
-	{
-		if (state == GLUT_DOWN)
-		{
-			boatSpeed -= 0.04f;
-			printf(">>> Notification: Boat speed decreased (-0.04)!\n");
-		}
-	}
-	glutPostRedisplay();
-}
-
-// ============== Handle Keyboard Press Functions ==============
-
-void handleKeypress(unsigned char key, int x, int y) {
-	switch (key) {
-
-	case 'w':
-	    // Increase train speed
-        trainSpeed = +0.1f;
-        printf(">>> Notification: Train speed increased (+0.03)!\n");
-        break;
-
-    case 'a':
-        trainSpeed = 0.0f;
-        printf(">>> Notification: Train stopped!\n");
-        break;
-
-    case 'd':
-        trainSpeed = 0.02f;
-        printf(">>> Notification: Train started / speed reset!\n");
-        break;
-
-    case 'm':
-        glLoadIdentity();
-        glutDisplayFunc(sunset);
-        glutPostRedisplay();
-        printf(">>> Notification: Showing sunset view!\n");
-        break;
-
-    case 'b':
-        glLoadIdentity();
-        glutDisplayFunc(summerSeason);
-        glutPostRedisplay();
-        printf(">>> Notification: Showing morning / summer view!\n");
-        break;
-
-    glutPostRedisplay();
-	}
-}
-
 void summerSeason() {
     // All drawing related to summer will be performed in this block
     glClear(GL_COLOR_BUFFER_BIT);
@@ -3301,90 +3240,7 @@ void sunset(){
    glPopMatrix();
 
    // updated train model code ends here
-/*
-   // Train body code starts here
-   glPushMatrix();
-   glTranslatef(trainPosition,0.0f, 0.0f);
 
-   // Train wheel - from left
-   glColor3f(1.0, 1.0, 1.0);
-   DrawCircle(0.5998821731765, -0.9361512437916, 0.0238494583195, 8000);//1 - far left
-   DrawCircle(0.5998821731765+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//2
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//3
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//4
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//5
-
-   // Train Body
-   glBegin(GL_QUADS);
-   glColor3ub(60, 160, 160);
-   glVertex2f(0.541827936322, -0.9243514184048);
-   glVertex2f(0.5877156024394, -0.6793877707164);
-   glVertex2f(0.9772657599597, -0.6793877707164);
-   glVertex2f(0.9775893048246, -0.9284275411587);
-   glEnd();
-
-   // Train nose
-   glBegin(GL_TRIANGLES);
-   glColor3ub(60, 160, 160);
-   glVertex2f(0.541827936322, -0.9243514184048);
-   glVertex2f(0.4812066770985 , -0.9243514184048);
-   glVertex2f(0.541827936322+ 0.1, -0.8593877707164);
-   glVertex2f(0.541827936322+ 0.1, -0.9284275411587);
-   glEnd();
-
-   //Train Front window
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.6332556280382, -0.7189713862838);
-   glVertex2f(0.6328508059703, -0.8007454440108);
-   glVertex2f(0.6328508059703 - 0.0674149961409, -0.8007454440108);
-   glVertex2f(0.6332556280382 - 0.0527475137977, -0.7189713862838);
-   glEnd();
-
-   //Train Front door
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.6477341622669, -0.7189713862838);
-   glVertex2f(0.7003276602857, -0.7189713862838);
-   glVertex2f(0.7003276602857, -0.7189713862838 - 0.2067068723295);
-   glVertex2f(0.6477341622669, -0.7189713862838 - 0.2067068723295);
-   glEnd();
-
-   // Train window 1
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957, -0.7189713862838);
-   glVertex2f(0.7829826061271, -0.7189713862838);
-   glVertex2f(0.7829826061271, -0.7889713862838);
-   glVertex2f(0.7184890224957, -0.7889713862838);
-   glEnd();
-
-   // Train window 2
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7889713862838);
-   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7889713862838);
-   glEnd();
-
-   // Train window 3
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
-   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
-   glEnd();
-
-   // Train body rest design will go here
-
-   // Code
-
-   glPopMatrix();
-
-   // Train body rest code ends here
-*/
    // Plane code will go here
 
    glPushMatrix();
@@ -3561,6 +3417,66 @@ void sunset(){
    glFlush();
 }
 
+// ============= Handle Mouse Press Functions ================
+
+void handleMouse(int button, int state, int x, int y) {
+	if (button == GLUT_LEFT_BUTTON)
+	{
+		if (state == GLUT_DOWN)
+		{
+			boatSpeed += 0.04f;
+			printf(">>> Notification: Boat speed increased (+0.04)!\n");
+		}
+	}
+    if (button == GLUT_RIGHT_BUTTON)
+	{
+		if (state == GLUT_DOWN)
+		{
+			boatSpeed -= 0.04f;
+			printf(">>> Notification: Boat speed decreased (-0.04)!\n");
+		}
+	}
+	glutPostRedisplay();
+}
+
+// ============== Handle Keyboard Press Functions ==============
+
+void handleKeypress(unsigned char key, int x, int y) {
+	switch (key) {
+
+	case 'w':
+	    // Increase train speed
+        trainSpeed = +0.1f;
+        printf(">>> Notification: Train speed increased (+0.03)!\n");
+        break;
+
+    case 'a':
+        trainSpeed = 0.0f;
+        printf(">>> Notification: Train stopped!\n");
+        break;
+
+    case 'd':
+        trainSpeed = 0.02f;
+        printf(">>> Notification: Train started / speed reset!\n");
+        break;
+
+    case 'm':
+        glLoadIdentity();
+        glutDisplayFunc(sunset);
+        glutPostRedisplay();
+        printf(">>> Notification: Showing sunset view!\n");
+        break;
+
+    case 'b':
+        glLoadIdentity();
+        glutDisplayFunc(summerSeason);
+        glutPostRedisplay();
+        printf(">>> Notification: Showing morning / summer view!\n");
+        break;
+
+    glutPostRedisplay();
+	}
+}
 
 
 int main(int argc, char** argv) {
