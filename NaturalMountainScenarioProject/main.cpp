@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
+#include <windows.h>
+#include <MMSystem.h>
 
 #define PI 3.1416
 
@@ -157,6 +159,24 @@ void birdUpdate(int value) {
 
 	glutTimerFunc(100, birdUpdate, 0);
 }
+
+// ================================================================
+
+// Audio section starts here
+
+void boatHonkSound()
+{
+    PlaySound(TEXT("boatHonk.wav"), NULL, SND_ASYNC);
+}
+
+void bird()
+{
+    PlaySound(TEXT("birds.wav"), NULL, SND_ASYNC);
+}
+
+// Audio section ends here
+
+// ================================================================
 
 void summerSeason() {
     // All drawing related to summer will be performed in this block
@@ -1805,7 +1825,7 @@ void sunset(){
 
     glPushMatrix();
     glTranslatef(cloud1Position, 0.0f, 0.0f);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(251, 251, 251);
 	DrawCircle(-0.3799673933028, 0.5780739267177, 0.0653084338854, 2000);//1
     DrawCircle(-0.4599673933028, 0.5829705293098, 0.0995776305031, 2000);//2
 	DrawCircle(-0.3099673933028, 0.5886832323339, 0.0783838868466, 2000);//3
@@ -1817,7 +1837,7 @@ void sunset(){
 
     glPushMatrix();
     glTranslatef(cloud2Position, 0.0f, 0.0f);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(251, 251, 251);
     DrawCircle(-0.3799673933028+1.0, 0.5780739267177+0.2, 0.0653084338854, 2000);//1
 	DrawCircle(-0.4599673933028+1.0, 0.5829705293098+0.2, 0.0995776305031, 2000);//2
 	DrawCircle(-0.3099673933028+1.0, 0.5886832323339+0.2, 0.0783838868466, 2000);//3
@@ -1829,7 +1849,7 @@ void sunset(){
 
     glPushMatrix();
     glTranslatef(cloud3Position, 0.0f, 0.0f);
-	glColor3f(1.0, 1.0, 1.0);
+	glColor3ub(253, 221, 207);
 	DrawCircle(-0.3799673933028-0.35, 0.5780739267177+0.3, 0.0653084338854, 2000);//1
 	DrawCircle(-0.4599673933028-0.35, 0.5829705293098+0.3, 0.0995776305031, 2000);//2
     glPopMatrix();
@@ -3477,7 +3497,7 @@ void night(){
 
     glPushMatrix();
     glTranslatef(cloud1Position, 0.0f, 0.0f);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(60,105,161);
 	DrawCircle(-0.3799673933028, 0.5780739267177, 0.0653084338854, 2000);//1
     DrawCircle(-0.4599673933028, 0.5829705293098, 0.0995776305031, 2000);//2
 	DrawCircle(-0.3099673933028, 0.5886832323339, 0.0783838868466, 2000);//3
@@ -3489,7 +3509,7 @@ void night(){
 
     glPushMatrix();
     glTranslatef(cloud2Position, 0.0f, 0.0f);
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3ub(24,62,124);
     DrawCircle(-0.3799673933028+1.0, 0.5780739267177+0.2, 0.0653084338854, 2000);//1
 	DrawCircle(-0.4599673933028+1.0, 0.5829705293098+0.2, 0.0995776305031, 2000);//2
 	DrawCircle(-0.3099673933028+1.0, 0.5886832323339+0.2, 0.0783838868466, 2000);//3
@@ -3501,7 +3521,7 @@ void night(){
 
     glPushMatrix();
     glTranslatef(cloud3Position, 0.0f, 0.0f);
-	glColor3f(1.0, 1.0, 1.0);
+	glColor3ub(60,105,161);
 	DrawCircle(-0.3799673933028-0.35, 0.5780739267177+0.3, 0.0653084338854, 2000);//1
 	DrawCircle(-0.4599673933028-0.35, 0.5829705293098+0.3, 0.0995776305031, 2000);//2
     glPopMatrix();
@@ -3518,7 +3538,7 @@ void night(){
     // Mountain 1 - Most back mountain starts from here
 
     glBegin(GL_POLYGON);
-    glColor3ub(153, 153, 153);
+    glColor3ub(32, 41, 47);
     glVertex2f(0.3929401421717, 0.4485380502278); //W
     glVertex2f(0.5526843286014, 0.3768483130035+0.04); //J
     glVertex2f(0.670801460241, 0.2971879218977-0.03); //K
@@ -3534,7 +3554,7 @@ void night(){
     // Mountain 2 - Middle mountain above most back starts from here
 
     glBegin(GL_POLYGON);
-    glColor3ub(145, 145, 145);
+    glColor3ub(38, 48, 55);
     glVertex2f(-0.6786421718519, 0.2908236747635); //R
     glVertex2f(-0.5147937620031, 0.2355724667912); //S
     glVertex2f(-0.2385377221418, 0.3174966717156); //T
@@ -3555,7 +3575,7 @@ void night(){
     // Mountain 3 - small mountain all over the canvas starts from here
 
     glBegin(GL_POLYGON);
-    glColor3ub(129, 129, 129);
+    glColor3ub(43, 55, 63);
     glVertex2f(-1, 0.1181319694005); //O
     glVertex2f(-0.5522115367946, 0.1827085088733); //P
     glVertex2f(-0.3539971566934, 0.1461150848547); //Q
@@ -3577,7 +3597,7 @@ void night(){
     // Mountain 4 - most front mountain pt1 code starts from here
 
     glBegin(GL_POLYGON);
-    glColor3ub(114, 114, 114);
+    glColor3ub(50, 62, 71);
     glVertex2f(-0.8012095319951, -0.1533053243555); //O
     glVertex2f(-0.6569896481988, -0.0378583357216); //P
     glVertex2f(-0.5769625910181, -0.0378583357216); //Q
@@ -3595,7 +3615,7 @@ void night(){
     // Mountain 4 - pt 2 code starts from here
 
     glBegin(GL_POLYGON);
-    glColor3ub(114, 114, 114);
+    glColor3ub(50, 62, 71);
     glVertex2f(0.4960794220775, -0.1533053243555); //O
     glVertex2f(0.5660816401225, -0.0919204959119); //P
     glVertex2f(0.7615044988316, -0.0598361459746); //Q
@@ -3615,7 +3635,7 @@ void night(){
     // River water code starts here
 
     glBegin(GL_POLYGON);
-    glColor3ub(110, 164, 221);
+    glColor3ub(10,46,82);
     glVertex2f(-1.0, -0.1533053243555); // Base -x up
     glVertex2f(1.0, -0.1533053243555); // Base +x up
     glVertex2f(1.0, -0.5756367057105); // Base +x down
@@ -3627,45 +3647,45 @@ void night(){
 
     // Wave set code starts here
 
-
     glPushMatrix();
     glTranslatef(rightWavePosition1,0.0f, 0.0f);
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(112,168,198);
     glVertex2f(-0.6, -0.3);
     glVertex2f(-0.4, -0.3);
     glVertex2f(-0.5, -0.275);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(32,93,140);
     glVertex2f(0.6, -0.3);
     glVertex2f(0.8, -0.3);
     glVertex2f(0.7, -0.275);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(32,93,140);
     glVertex2f(-0.9, -0.4);
     glVertex2f(-0.7, -0.4);
     glVertex2f(-0.8, -0.375);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(32,93,140);
     glVertex2f(0.3, -0.4);
     glVertex2f(0.5, -0.4);
     glVertex2f(0.4, -0.375);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(32,93,140);
     glVertex2f(-0.5, -0.5);
     glVertex2f(-0.3, -0.5);
     glVertex2f(-0.4, -0.475);
     glEnd();
     glPushMatrix();
+
     glTranslatef(rightWavePosition1,0.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     glColor3ub(190, 220, 220);
@@ -3680,21 +3700,21 @@ void night(){
     glTranslatef(rightWavePosition2,0.0f, 0.0f);
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(111,170,202);
     glVertex2f(0.0, -0.3);
     glVertex2f(0.2, -0.3);
     glVertex2f(0.1, -0.275);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(111,170,202);
     glVertex2f(-0.3, -0.4);
     glVertex2f(-0.1, -0.4);
     glVertex2f(-0.2, -0.375);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-    glColor3ub(190, 220, 220);
+    glColor3ub(111,170,202);
     glVertex2f(0.1, -0.5);
     glVertex2f(0.3, -0.5);
     glVertex2f(0.2, -0.475);
@@ -3733,7 +3753,7 @@ void night(){
 
     // 1st flr of boat
    glBegin(GL_QUADS);
-   glColor3ub(244, 244, 244);
+   glColor3ub(130, 130, 130);
    glVertex2f(0.45f, -0.33f);
    glVertex2f(0.72f, -0.33f);
    glVertex2f(0.72f, -0.25f);
@@ -3778,7 +3798,7 @@ void night(){
 
    // 2nd flr left small block
    glBegin(GL_QUADS);
-   glColor3ub(244, 244, 244);
+   glColor3ub(130, 130, 130);
    glVertex2f(0.52f, -0.23f);
    glVertex2f(0.56f, -0.23f);
    glVertex2f(0.56f, -0.18f);
@@ -3787,7 +3807,7 @@ void night(){
 
    //2nd flr right big block
    glBegin(GL_QUADS);
-   glColor3ub(244, 244, 244);
+   glColor3ub(130, 130, 130);
    glVertex2f(0.56f, -0.23f);
    glVertex2f(0.71f, -0.23f);
    glVertex2f(0.71f, -0.16f);
@@ -3910,7 +3930,7 @@ void night(){
    // Back tree row common fill code starts here
 
    glBegin(GL_QUADS);
-   glColor3ub(61, 124, 83);
+   glColor3ub(0, 82, 0);
    glVertex2f(1.0, -0.5756367057105); // Base +x down
    glVertex2f(-1.0, -0.5756367057105); // Base -x down
    glVertex2f(-1.0, -0.6869004722551);
@@ -3921,7 +3941,7 @@ void night(){
 
    // Bush code starts here
 
-   glColor3ub(61, 124, 83);
+   glColor3ub(0, 82, 0);
 	DrawCircle(-0.9072372816471, -0.5468327234769, 0.0978210355299, 2000);//1
     DrawCircle(-0.7882306545015, -0.5235785549542, 0.0951840734353, 2000);//2
 	DrawCircle(-0.6500735356314, -0.5372574776146, 0.096724589725, 2000);//3
@@ -3948,7 +3968,7 @@ void night(){
    // Ground grass color code starts here
 
    glBegin(GL_QUADS);
-   glColor3ub(78, 133, 21);
+   glColor3ub(3, 96, 3);
    glVertex2f(-1.0, -0.6869004722551);
    glVertex2f(1.0, -0.6869004722551);
    glVertex2f(1.0, -1);
@@ -3961,28 +3981,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 40);
    glVertex2f(-0.2938571399917, -0.4423232979151);
    glVertex2f(-0.2115496244678, -0.5423834148265);
    glVertex2f(-0.3793924012224, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252, -0.5084920849049);
    glVertex2f(-0.1841137859599, -0.5811163633083);
    glVertex2f(-0.3898825747696, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3, -0.55);
    glVertex2f(-0.1792721673996, -0.6408296588845);
    glVertex2f(-0.3955311297565, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3, -0.6);
    glVertex2f(-0.1740006707345, -0.6905816498292);
    glVertex2f(-0.4187989794158, -0.6869004722551);
@@ -3997,7 +4017,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3, -0.65);
    glVertex2f(-0.1574353716508, -0.7286204847622);
    glVertex2f(-0.4286154529469, -0.7292340143579);
@@ -4009,28 +4029,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 + 0.3, -0.4423232979151);
    glVertex2f(-0.2115496244678 + 0.3, -0.5423834148265);
    glVertex2f(-0.3793924012224 + 0.3, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 + 0.3, -0.5084920849049);
    glVertex2f(-0.1841137859599 + 0.3, -0.5811163633083);
    glVertex2f(-0.3898825747696 + 0.3, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.55);
    glVertex2f(-0.1792721673996 + 0.3, -0.6408296588845);
    glVertex2f(-0.3955311297565 + 0.3, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.6);
    glVertex2f(-0.1740006707345 + 0.3, -0.6905816498292);
    glVertex2f(-0.4187989794158 + 0.3, -0.6869004722551);
@@ -4045,7 +4065,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.65);
    glVertex2f(-0.1574353716508 + 0.3, -0.7286204847622);
    glVertex2f(-0.4286154529469 + 0.3, -0.7292340143579);
@@ -4057,28 +4077,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 + 0.6, -0.4423232979151);
    glVertex2f(-0.2115496244678 + 0.6, -0.5423834148265);
    glVertex2f(-0.3793924012224 + 0.6, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 + 0.6, -0.5084920849049);
    glVertex2f(-0.1841137859599 + 0.6, -0.5811163633083);
    glVertex2f(-0.3898825747696 + 0.6, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.6, -0.55);
    glVertex2f(-0.1792721673996 + 0.6, -0.6408296588845);
    glVertex2f(-0.3955311297565 + 0.6, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.6, -0.6);
    glVertex2f(-0.1740006707345 + 0.6, -0.6905816498292);
    glVertex2f(-0.4187989794158 + 0.6, -0.6869004722551);
@@ -4093,7 +4113,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.6, -0.65);
    glVertex2f(-0.1574353716508 + 0.6, -0.7286204847622);
    glVertex2f(-0.4286154529469 + 0.6, -0.7292340143579);
@@ -4105,28 +4125,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 + 0.3, -0.4423232979151);
    glVertex2f(-0.2115496244678 + 0.3, -0.5423834148265);
    glVertex2f(-0.3793924012224 + 0.3, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 + 0.3, -0.5084920849049);
    glVertex2f(-0.1841137859599 + 0.3, -0.5811163633083);
    glVertex2f(-0.3898825747696 + 0.3, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.55);
    glVertex2f(-0.1792721673996 + 0.3, -0.6408296588845);
    glVertex2f(-0.3955311297565 + 0.3, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.6);
    glVertex2f(-0.1740006707345 + 0.3, -0.6905816498292);
    glVertex2f(-0.4187989794158 + 0.3, -0.6869004722551);
@@ -4141,7 +4161,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.3, -0.65);
    glVertex2f(-0.1574353716508 + 0.3, -0.7286204847622);
    glVertex2f(-0.4286154529469 + 0.3, -0.7292340143579);
@@ -4153,28 +4173,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 + 0.9, -0.4423232979151);
    glVertex2f(-0.2115496244678 + 0.9, -0.5423834148265);
    glVertex2f(-0.3793924012224 + 0.9, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 + 0.9, -0.5084920849049);
    glVertex2f(-0.1841137859599 + 0.9, -0.5811163633083);
    glVertex2f(-0.3898825747696 + 0.9, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.9, -0.55);
    glVertex2f(-0.1792721673996 + 0.9, -0.6408296588845);
    glVertex2f(-0.3955311297565 + 0.9, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.9, -0.6);
    glVertex2f(-0.1740006707345 + 0.9, -0.6905816498292);
    glVertex2f(-0.4187989794158 + 0.9, -0.6869004722551);
@@ -4189,7 +4209,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 0.9, -0.65);
    glVertex2f(-0.1574353716508 + 0.9, -0.7286204847622);
    glVertex2f(-0.4286154529469 + 0.9, -0.7292340143579);
@@ -4201,28 +4221,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 + 1.2, -0.4423232979151);
    glVertex2f(-0.2115496244678 + 1.2, -0.5423834148265);
    glVertex2f(-0.3793924012224 + 1.2, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 + 1.2, -0.5084920849049);
    glVertex2f(-0.1841137859599 + 1.2, -0.5811163633083);
    glVertex2f(-0.3898825747696 + 1.2, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 1.2, -0.55);
    glVertex2f(-0.1792721673996 + 1.2, -0.6408296588845);
    glVertex2f(-0.3955311297565 + 1.2, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 1.2, -0.6);
    glVertex2f(-0.1740006707345 + 1.2, -0.6905816498292);
    glVertex2f(-0.4187989794158 + 1.2, -0.6869004722551);
@@ -4237,7 +4257,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 + 1.2, -0.65);
    glVertex2f(-0.1574353716508 + 1.2, -0.7286204847622);
    glVertex2f(-0.4286154529469 + 1.2, -0.7292340143579);
@@ -4249,28 +4269,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 - 0.3, -0.4423232979151 + 0.03);
    glVertex2f(-0.2115496244678 - 0.3, -0.5423834148265 + 0.03);
    glVertex2f(-0.3793924012224 - 0.3, -0.5415764783998 + 0.03);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 - 0.3, -0.5084920849049 + 0.03);
    glVertex2f(-0.1841137859599 - 0.3, -0.5811163633083 + 0.03);
    glVertex2f(-0.3898825747696 - 0.3, -0.5762747447481 + 0.03);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.3, -0.55 + 0.03);
    glVertex2f(-0.1792721673996 - 0.3, -0.6408296588845 + 0.03);
    glVertex2f(-0.3955311297565 - 0.3, -0.6335672310441 + 0.03);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.3, -0.6);
    glVertex2f(-0.1740006707345 - 0.3, -0.6905816498292 + 0.03);
    glVertex2f(-0.4187989794158 - 0.3, -0.6869004722551 + 0.03);
@@ -4285,7 +4305,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.3, -0.65);
    glVertex2f(-0.1574353716508 - 0.3, -0.7286204847622 + 0.03);
    glVertex2f(-0.4286154529469 - 0.3, -0.7292340143579 + 0.03);
@@ -4297,28 +4317,28 @@ void night(){
 
    // 1st triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2938571399917 - 0.6, -0.4423232979151);
    glVertex2f(-0.2115496244678 - 0.6, -0.5423834148265);
    glVertex2f(-0.3793924012224 - 0.6, -0.5415764783998);
    glEnd();
    // 2nd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.2978918221252 - 0.6, -0.5084920849049);
    glVertex2f(-0.1841137859599 - 0.6, -0.5811163633083);
    glVertex2f(-0.3898825747696 - 0.6, -0.5762747447481);
    glEnd();
    //3rd triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.6, -0.55);
    glVertex2f(-0.1792721673996 - 0.6, -0.6408296588845);
    glVertex2f(-0.3955311297565 - 0.6, -0.6335672310441);
    glEnd();
    //4th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.6, -0.6);
    glVertex2f(-0.1740006707345 - 0.6, -0.6905816498292);
    glVertex2f(-0.4187989794158 - 0.6, -0.6869004722551);
@@ -4333,7 +4353,7 @@ void night(){
    glEnd();
    //5th triangle
    glBegin(GL_TRIANGLES);
-   glColor3ub(13, 91, 40);
+   glColor3ub(0, 53, 0);
    glVertex2f(-0.3 - 0.6, -0.65);
    glVertex2f(-0.1574353716508 - 0.6, -0.7286204847622);
    glVertex2f(-0.4286154529469 - 0.6, -0.7292340143579);
@@ -4563,7 +4583,7 @@ void night(){
 
    //  left engine body code goes here
    glBegin(GL_POLYGON);
-   glColor3ub(255, 92, 92);
+   glColor3ub(0, 0, 104);
    glVertex2f(0.0902750519795, -0.9243514184048); //V
    glVertex2f(0.2638419609981, -0.9243514184048); //Z
    glVertex2f(0.2638419609981, -0.9243514184048); //Z
@@ -4660,7 +4680,7 @@ void night(){
 
    // Left Engine top Box code goes here
    glBegin(GL_QUADS);
-   glColor3ub(246, 246, 246);
+   glColor3ub(0, 0, 34);
    glVertex2f(0.4341934243381, -0.733329040145); //G9
    glVertex2f(0.4341934243381, -0.7175755480725); //H9
    glVertex2f(0.1797273626565, -0.7175755480725); //I9
@@ -4678,7 +4698,7 @@ void night(){
 
    // Carriage body code
    glBegin(GL_POLYGON);
-   glColor3ub(255, 92, 92);
+   glColor3ub(0, 0, 104);
    glVertex2f(0.4801758240852, -0.9191043740047); //I11
    glVertex2f(0.4809755595681, -0.9205862368113); //H11
    glVertex2f(0.482410379111, -0.9219975347223); //G11
@@ -4708,7 +4728,7 @@ void night(){
 
    //top Box code goes here
    glBegin(GL_QUADS);
-   glColor3ub(246, 246, 246);
+   glColor3ub(0, 0, 34);
    glVertex2f(0.5054866328459, -0.733329040145); //G9
    glVertex2f(0.5054866328459, -0.7175755480725); //H9
    glVertex2f(0.8286505622915, -0.7175755480725); //I9
@@ -4763,90 +4783,7 @@ void night(){
    glPopMatrix();
 
    // updated train model code ends here
-/*
-   // Train body code starts here
-   glPushMatrix();
-   glTranslatef(trainPosition,0.0f, 0.0f);
 
-   // Train wheel - from left
-   glColor3f(1.0, 1.0, 1.0);
-   DrawCircle(0.5998821731765, -0.9361512437916, 0.0238494583195, 8000);//1 - far left
-   DrawCircle(0.5998821731765+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//2
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//3
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//4
-   DrawCircle(0.5998821731765+0.0817079239908+0.0817079239908+0.0817079239908+0.0817079239908, -0.9361512437916, 0.0238494583195, 8000);//5
-
-   // Train Body
-   glBegin(GL_QUADS);
-   glColor3ub(60, 160, 160);
-   glVertex2f(0.541827936322, -0.9243514184048);
-   glVertex2f(0.5877156024394, -0.6793877707164);
-   glVertex2f(0.9772657599597, -0.6793877707164);
-   glVertex2f(0.9775893048246, -0.9284275411587);
-   glEnd();
-
-   // Train nose
-   glBegin(GL_TRIANGLES);
-   glColor3ub(60, 160, 160);
-   glVertex2f(0.541827936322, -0.9243514184048);
-   glVertex2f(0.4812066770985 , -0.9243514184048);
-   glVertex2f(0.541827936322+ 0.1, -0.8593877707164);
-   glVertex2f(0.541827936322+ 0.1, -0.9284275411587);
-   glEnd();
-
-   //Train Front window
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.6332556280382, -0.7189713862838);
-   glVertex2f(0.6328508059703, -0.8007454440108);
-   glVertex2f(0.6328508059703 - 0.0674149961409, -0.8007454440108);
-   glVertex2f(0.6332556280382 - 0.0527475137977, -0.7189713862838);
-   glEnd();
-
-   //Train Front door
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.6477341622669, -0.7189713862838);
-   glVertex2f(0.7003276602857, -0.7189713862838);
-   glVertex2f(0.7003276602857, -0.7189713862838 - 0.2067068723295);
-   glVertex2f(0.6477341622669, -0.7189713862838 - 0.2067068723295);
-   glEnd();
-
-   // Train window 1
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957, -0.7189713862838);
-   glVertex2f(0.7829826061271, -0.7189713862838);
-   glVertex2f(0.7829826061271, -0.7889713862838);
-   glVertex2f(0.7184890224957, -0.7889713862838);
-   glEnd();
-
-   // Train window 2
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788, -0.7889713862838);
-   glVertex2f(0.7184890224957 + 0.0889386558788, -0.7889713862838);
-   glEnd();
-
-   // Train window 3
-   glBegin(GL_QUADS);
-   glColor3ub(0, 0, 0);
-   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7189713862838);
-   glVertex2f(0.7829826061271 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
-   glVertex2f(0.7184890224957 + 0.0889386558788 + 0.0889386558788, -0.7889713862838);
-   glEnd();
-
-   // Train body rest design will go here
-
-   // Code
-
-   glPopMatrix();
-
-   // Train body rest code ends here
-*/
    // Plane code will go here
 
    glPushMatrix();
@@ -4854,7 +4791,7 @@ void night(){
 
    //Plane tail
    glBegin(GL_POLYGON);
-   glColor3ub(255, 92, 92);
+   glColor3ub(143,20,5);
    glVertex2f(0.8358019188841, 0.8504269629171); //S1
    glVertex2f(0.88381860356, 0.8404090218668); //P1
    glVertex2f(0.9185412349809, 0.8637735585556); //Q1
@@ -4874,7 +4811,7 @@ void night(){
 
    // Plane main body
    glBegin(GL_POLYGON);
-   glColor3ub(8, 104, 150);
+   glColor3ub(240, 236, 236);
    glVertex2f(0.4931696166869, 0.8256810958153); //C1
    glVertex2f(0.4947744567499, 0.820619677155); // E1
    glVertex2f(0.4977372384047, 0.8171630985578); // F1
@@ -4918,7 +4855,7 @@ void night(){
 
    // Plane pilot window
    glBegin(GL_POLYGON);
-   glColor3f(1.0, 1.0, 1.0);
+   glColor3ub(32, 32, 32);
    glVertex2f(0.5459988973144, 0.8595684470886); //L2
    glVertex2f(0.5484435225582, 0.8581125963309); //B3
    glVertex2f(0.5508898829972, 0.8570181719239); //C3
@@ -4950,7 +4887,7 @@ void night(){
    glEnd();
 
    //Place passenger window
-   glColor3f(1.0, 1.0, 1.0);
+   glColor3ub(32, 32, 32);
    DrawCircle(0.6136134880138, 0.8411480005225, 0.0035804757714, 2000); //C4
    DrawCircle(0.6355357881342, 0.8414408556768, 0.0035804757714, 2000); //D4
    DrawCircle(0.6571667992868, 0.8414456205529, 0.0035804757714, 2000); //E4
@@ -4963,7 +4900,7 @@ void night(){
 
    //Plane back small wing
    glBegin(GL_POLYGON);
-   glColor3ub(217, 215, 13);
+   glColor3ub(163, 0, 0);
    glVertex2f(0.8429190184152, 0.8388715830182); //Z4
    glVertex2f(0.8428187584983, 0.8357635255951); //A5
    glVertex2f(0.8699891959712, 0.8237323355702); //B5
@@ -4986,7 +4923,7 @@ void night(){
 
    //Plane big wing
    glBegin(GL_POLYGON);
-   glColor3ub(217, 215, 13);
+   glColor3ub(163, 0, 0);
    glVertex2f(0.6124736329244, 0.8227595947783); //Q5
    glVertex2f(0.6110676761079, 0.8217051271659); //R5
    glVertex2f(0.61, 0.82); //S5
@@ -5070,6 +5007,7 @@ void handleKeypress(unsigned char key, int x, int y) {
         glutDisplayFunc(sunset);
         glutPostRedisplay();
         printf(">>> Notification: Showing sunset view!\n");
+        bird();
         break;
 
     case 'b':
@@ -5079,12 +5017,48 @@ void handleKeypress(unsigned char key, int x, int y) {
         printf(">>> Notification: Showing morning / summer view!\n");
         break;
 
+    case 'n':
+        glLoadIdentity();
+        glutDisplayFunc(night);
+        glutPostRedisplay();
+        printf(">>> Notification: Showing night view!\n");
+        break;
+
+    case 'h':
+        boatHonkSound();
+        printf(">>> Notification: Playing boat honk sound!\n");
+        break;
+
+    case 27:
+        exit(0);
+        break;
+
     glutPostRedisplay();
 	}
 }
 
 
 int main(int argc, char** argv) {
+    printf("       ************* COMPUTER GRAPHICS PROJECT *************       ");
+    printf("\n            *************INSTRUCTIONS*************             \n");
+    printf("           ************* Train operations *************          \n");
+    printf("Increase Speed: W \n");
+    printf("Stop train: A \n");
+    printf("Start train: D \n");
+    printf("\n");
+    printf("           ************** Boat operations *************          \n");
+    printf("Increase Speed and For Going Forward: Mouse Left Button \n");
+    printf("Decrease Speed and For Going Backward: Mouse Right Button \n");
+    printf("After Stopping Train, Start Train Backward: Mouse Right Button \n");
+    printf("\n");
+    printf("           **************** Scene Change **************          \n");
+    printf("Switch to Morning view: B \n");
+    printf("Switch to Sunset view: M \n");
+    printf("Switch to Night view: N \n");
+    printf("\n");
+    printf("Exit Program: Esc \n");
+    printf("\n");
+
    glutInit(&argc, argv);
    glutInitWindowSize(980, 700);
    glutInitWindowPosition(50, 50);
