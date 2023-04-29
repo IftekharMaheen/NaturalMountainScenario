@@ -39,31 +39,11 @@ GLfloat planeSpeed = 0.012f;
 float birdPosition = 0.0f;
 GLfloat birdSpeed = 0.016f;
 
-/*
-void handleKeypress(unsigned char key, int x, int y) {
-
-	switch (key) {
-
-	case 'a':
-    speed = 0.0f;
-    break;
-
-    case 'w':
-    speed += 0.1f;
-    break;
-
-
-    glutPostRedisplay();
-
-	}
-}*/
-
 void init() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 }
-
 
 void DrawCircle(float cx, float cy, float r, int num_segments){
     glBegin(GL_TRIANGLE_FAN);
@@ -3484,7 +3464,7 @@ int main(int argc, char** argv) {
    glutInitWindowSize(980, 700);
    glutInitWindowPosition(50, 50);
    glutCreateWindow("Natural Scenario");
-   glutDisplayFunc(sunset);
+   glutDisplayFunc(summerSeason);
    init();
    glutKeyboardFunc(handleKeypress);
    glutMouseFunc(handleMouse);
