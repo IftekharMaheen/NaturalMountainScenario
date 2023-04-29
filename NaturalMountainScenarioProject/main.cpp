@@ -5050,6 +5050,7 @@ int main(int argc, char** argv) {
     printf("Increase Speed and For Going Forward: Mouse Left Button \n");
     printf("Decrease Speed and For Going Backward: Mouse Right Button \n");
     printf("After Stopping Train, Start Train Backward: Mouse Right Button \n");
+    printf("Honk Boat: H \n");
     printf("\n");
     printf("           **************** Scene Change **************          \n");
     printf("Switch to Morning view: B \n");
@@ -5057,6 +5058,8 @@ int main(int argc, char** argv) {
     printf("Switch to Night view: N \n");
     printf("\n");
     printf("Exit Program: Esc \n");
+    printf("\n");
+    printf("Github Link: https://github.com/IftekharMaheen/NaturalMountainScenario\n");
     printf("\n");
 
    glutInit(&argc, argv);
